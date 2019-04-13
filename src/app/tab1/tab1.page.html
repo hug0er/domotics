@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Tab One
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card" *ngFor="let lampara of lamparas" >
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div *ngIf="lampara.estado === 1">
+              <ion-button (click)="luces(lampara)">Apagar</ion-button>
+            </div>
+            <div *ngIf="lampara.estado === 0">
+              <ion-button (click)="luces(lampara)">Encender</ion-button>
+            </div>
+            <bytelabs-color-selector [(color)]="lampara.color"></bytelabs-color-selector>
+            <ion-button *ngIf="lampara.color" (click)="color(lampara)">Color</ion-button>
+          </ion-col>
+          <ion-col class="ion-align-self-right">
+            <div *ngIf="lampara.estado === 1">
+              <div class="image">
+                <ion-img class="png-over lampara" src="/assets/icon/lampOn.png"></ion-img>
+                <div [ngStyle]="{'background-color': lampara.currentColor, 'width': '50px', 'height': '50px'}"></div>
+              </div>
+            </div>
+            <div *ngIf="lampara.estado === 0">
+              <div class="image">
+                <ion-img class="png-over lampara" src="/assets/icon/lampOff.png"></ion-img>
+                <div [ngStyle]="{'background-color': lampara.currentColor, 'width': '50px', 'height': '50px' }"></div>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
